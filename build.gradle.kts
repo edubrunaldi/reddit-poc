@@ -41,6 +41,10 @@ dependencies {
     implementation("org.springframework.modulith:spring-modulith-starter-core")
     implementation("org.springframework.modulith:spring-modulith-starter-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+
+    implementation("org.bouncycastle:bcprov-jdk18on:1.76")
+
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
@@ -49,6 +53,7 @@ dependencies {
     testImplementation("org.springframework.integration:spring-integration-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testImplementation("org.springframework.modulith:spring-modulith-starter-test")
+
 }
 
 dependencyManagement {
