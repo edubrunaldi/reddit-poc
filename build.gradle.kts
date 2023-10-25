@@ -42,7 +42,7 @@ dependencies {
     implementation("org.springframework.modulith:spring-modulith-starter-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.bouncycastle:bcprov-jdk18on:1.76")
 
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
