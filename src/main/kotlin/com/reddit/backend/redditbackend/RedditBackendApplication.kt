@@ -6,7 +6,10 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
-@ComponentScan(basePackages = ["com.reddit.backend.redditbackend.user"])
+@ComponentScan(basePackages = [
+    "com.reddit.backend.redditbackend.user",
+    "com.reddit.backend.redditbackend.core"
+])
 class RedditBackendApplication
 
 fun main(args: Array<String>) {
