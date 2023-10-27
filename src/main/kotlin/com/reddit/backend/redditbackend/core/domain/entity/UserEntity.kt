@@ -6,12 +6,20 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.Index
+import jakarta.persistence.Table
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDateTime
 
 
-@Entity(name = "USER")
+@Entity
+@Table(
+    name = "USER",
+    indexes =  [
+        Index(name="IDX_USERNAME", columnList = "DES_USERNAME")
+    ]
+)
 class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
