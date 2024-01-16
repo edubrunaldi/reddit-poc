@@ -1,6 +1,5 @@
 package com.reddit.backend.redditbackend.user.internal.service
 
-import com.reddit.backend.redditbackend.core.domain.entity.toUserResponse
 import com.reddit.backend.redditbackend.core.domain.repository.UserRepository
 import com.reddit.backend.redditbackend.user.internal.dto.CreateUserDto
 import com.reddit.backend.redditbackend.user.internal.dto.LoginDto
@@ -10,6 +9,7 @@ import com.reddit.backend.redditbackend.user.internal.exception.PasswordMissMatc
 import com.reddit.backend.redditbackend.user.internal.exception.UserNotFoundException
 import com.reddit.backend.redditbackend.user.internal.exception.UsernameExistsException
 import com.reddit.backend.redditbackend.user.internal.exception.InvalidPasswordException
+import com.reddit.backend.redditbackend.user.internal.extension.toUserResponse
 import com.reddit.backend.redditbackend.user.internal.web.response.UserResponse
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -36,7 +36,7 @@ class UserService(
             ?: throw UserNotFoundException()
 
 
-    private fun validateUser(createUserDto: CreateUserDto): Nothing? =
+    private fun validateUser(createUserDto: CreateUserDto) =
         validateUsername(createUserDto.username)
             .also { validateEmail(createUserDto.email) }
             .also { validatePasswordCriteria(createUserDto.password) }
@@ -48,12 +48,12 @@ class UserService(
     }
 
 
-    private fun validateEmail(email: String): Nothing? =
+    private fun validateEmail(email: String) =
         userRepository.existsByEmail(email)
             .takeIf { it }
             ?.run { throw EmailExistsException(email) }
 
-    private fun validateUsername(username: String): Nothing? =
+    private fun validateUsername(username: String) =
         userRepository.existsByUsername(username)
             .takeIf { it }
             ?.run { throw UsernameExistsException(username) }

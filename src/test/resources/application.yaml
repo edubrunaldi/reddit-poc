@@ -3,12 +3,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/mydatabase
     username: myuser
     password: secret
-
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: myuser
-    password: secret
+  jpa:
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.H2Dialect"
 
 user:
   password:

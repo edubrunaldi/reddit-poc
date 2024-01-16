@@ -30,7 +30,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-integration")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        exclude("org.springframework.boot", "spring-boot-starter-logging")
+    }
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.integration:spring-integration-amqp")
@@ -44,16 +46,17 @@ dependencies {
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.bouncycastle:bcprov-jdk18on:1.76")
-    implementation("org.flywaydb:flyway-core")
 
-    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
-    runtimeOnly("org.postgresql:postgresql")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    implementation("org.postgresql:postgresql")
+
+   //                        ### TESTS #####
+    testImplementation("org.springframework.cloud:spring-cloud-contract-wiremock:4.1.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.amqp:spring-rabbit-test")
     testImplementation("org.springframework.integration:spring-integration-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testImplementation("org.springframework.modulith:spring-modulith-starter-test")
+    testImplementation("com.h2database:h2")
 
     testImplementation("io.mockk:mockk:1.13.8")
 
@@ -75,3 +78,5 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+

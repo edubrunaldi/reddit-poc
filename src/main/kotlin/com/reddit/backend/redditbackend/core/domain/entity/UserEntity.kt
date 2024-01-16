@@ -1,6 +1,5 @@
 package com.reddit.backend.redditbackend.core.domain.entity
 
-import com.reddit.backend.redditbackend.user.internal.web.response.UserResponse
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -43,5 +42,3 @@ class UserEntity(
     @LastModifiedDate
     var updatedAt: LocalDateTime? = null,
 )
-
-fun UserEntity.toUserResponse() = UserResponse(id, username, email)

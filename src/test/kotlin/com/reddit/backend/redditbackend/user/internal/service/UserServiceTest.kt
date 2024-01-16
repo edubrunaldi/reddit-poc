@@ -68,7 +68,7 @@ class UserServiceTest {
         every { userRepository.existsByEmail(createUserDto.email) } returns true
 
         assertThrows<EmailExistsException> {userService.createUser(createUserDto)}
-            .also { assertThat(it.message).isEqualTo(EmailExistsException.MESSAGE.format(createUserDto.username)) }
+            .also { assertThat(it.message).isEqualTo(EmailExistsException.MESSAGE.format(createUserDto.email)) }
     }
 
     @Test
