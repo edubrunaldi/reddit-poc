@@ -59,6 +59,9 @@ If you have an exciting project in mind that utilizes these technologies, I'd lo
 
 Feel free to reach out to me through any of the following channels:
 
-    Email: eduardo.brunaldi.santos@gmail.com
-    [![LinkedIn - Eduardo Brunaldi](images/linkedin-logo.png)](https://www.linkedin.com/in/eduardo-brunaldi/)
+Email: [eduardo.brunaldi.santos@gmail.com](mailto:eduardo.brunaldi.santos@gmail.com)
+
+
+[https://www.linkedin.com/in/eduardo-brunaldi/](https://www.linkedin.com/in/eduardo-brunaldi/)
+
 
