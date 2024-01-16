@@ -55,6 +55,8 @@ dependencies {
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 
+    testImplementation("io.mockk:mockk:1.13.8")
+
 }
 
 dependencyManagement {

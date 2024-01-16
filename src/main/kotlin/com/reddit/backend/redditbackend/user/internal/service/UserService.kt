@@ -9,6 +9,7 @@ import com.reddit.backend.redditbackend.user.internal.exception.EmailExistsExcep
 import com.reddit.backend.redditbackend.user.internal.exception.PasswordMissMatchException
 import com.reddit.backend.redditbackend.user.internal.exception.UserNotFoundException
 import com.reddit.backend.redditbackend.user.internal.exception.UsernameExistsException
+import com.reddit.backend.redditbackend.user.internal.exception.InvalidPasswordException
 import com.reddit.backend.redditbackend.user.internal.web.response.UserResponse
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -35,21 +36,27 @@ class UserService(
             ?: throw UserNotFoundException()
 
 
-    private fun validateUser(createUserDto: CreateUserDto): Unit =
+    private fun validateUser(createUserDto: CreateUserDto): Nothing? =
         validateUsername(createUserDto.username)
-            .run { validateEmail(createUserDto.email) }
-            .run { passwordService.validatePasswordCriteria(createUserDto.password) }
+            .also { validateEmail(createUserDto.email) }
+            .also { validatePasswordCriteria(createUserDto.password) }
 
-
-    private fun validateEmail(email: String): Unit =
-        userRepository.existsByUsername(email)
+    private fun validatePasswordCriteria(password: String) {
+        passwordService.validatePasswordCriteria(password)
             .takeUnless { it }
-            .run { throw EmailExistsException(email) }
+            ?.run { throw InvalidPasswordException() }
+    }
 
-    private fun validateUsername(username: String): Unit =
+
+    private fun validateEmail(email: String): Nothing? =
+        userRepository.existsByEmail(email)
+            .takeIf { it }
+            ?.run { throw EmailExistsException(email) }
+
+    private fun validateUsername(username: String): Nothing? =
         userRepository.existsByUsername(username)
-            .takeUnless { it }
-            .run { throw UsernameExistsException(username) }
+            .takeIf { it }
+            ?.run { throw UsernameExistsException(username) }
 
     private fun validatePassword(password: String, passwordSaved: String) {
         if (passwordService.hashPassword(password) != passwordSaved) {

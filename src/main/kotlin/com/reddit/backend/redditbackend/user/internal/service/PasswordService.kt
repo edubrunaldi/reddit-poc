@@ -9,7 +9,7 @@ class PasswordService(private val passwordProperties: PasswordProperties) {
     companion object {
         // DO NOT USE THIS ON PRODUCTION
         // Hardcoded salt & cost
-        private val salt = "12345678901234567890".toByteArray()
+        private val salt = "1234567890123456".toByteArray()
         private const val COST = 10
     }
     fun hashPassword(password: String): String =
